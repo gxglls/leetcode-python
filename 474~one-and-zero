@@ -1,0 +1,33 @@
+class Solution:
+    def count_zero(self, pstr: str):
+        count = 0
+        for i in pstr:
+            if i == "0":
+                count += 1
+        return count
+
+    def count_one(self, pstr: str):
+        count = 0
+        for i in pstr:
+            if i == "1":
+                count += 1
+        return count
+
+    def findMaxForm(self, strs: list, m: int, n: int) -> int:
+        col = [ (x, y) for x in range(0,m+1) for y in range(0,n+1) ]
+        row = strs
+        tempArr = [0]*(len(col))
+        result = []
+        result.append([0]*(len(col)))
+        for r in range(len(row)):
+            tempArr[0] = 0
+            for c in range(len(col)):
+                if col[c][0]-self.count_zero(strs[r]) < 0 or col[c][1]-self.count_one(strs[r]) < 0:
+                    tempArr[c] = result[r][c]
+                else:
+                    tempM=col[c][0] - self.count_zero(strs[r])
+                    tempN=col[c][1] - self.count_one(strs[r])
+                    tempArr[c] = max(result[r][c],result[r][col.index((tempM,tempN))]+1)
+            result.append(tempArr)
+            tempArr=[0]*(len(col))
+        return result[len(strs)][len(col)-1]
