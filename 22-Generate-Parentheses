@@ -1,0 +1,14 @@
+ans = []
+N = 3
+
+def backtrack(S='', left=0, right=0):
+    if len(S) == 2 * N:
+        ans.append(S)
+        return
+    if left < N:
+        print(f"one : backtrack( {S+'('},{left+1}, {right} )")
+        backtrack(S + '(', left + 1, right)
+    if right < left:
+        print( f"two : backtrack( {S+')'},{left}, {right+1} )")
+        backtrack(S + ')', left, right + 1)
+backtrack()
