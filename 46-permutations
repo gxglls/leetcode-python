@@ -1,0 +1,13 @@
+class Solution:
+    def permute(self, nums):
+        def bk(temp_res, nums, result):
+            if len(nums) == 1:
+                temp_res.append(nums[0])
+                result.append(temp_res)
+                #return result
+            for i in range(len(nums)):
+                bk(temp_res+[nums[i]], nums[:i]+nums[i+1:], result)
+            return result
+        if not nums:
+            return nums
+        return bk([], nums, [])
