@@ -1,0 +1,10 @@
+class Solution:
+    def canJump(self, nums):
+        globalMax = 0
+        curMax = 0
+        for i, j in enumerate(nums):
+            if i > globalMax:
+                return False
+            if i + j > globalMax:
+                globalMax = i + j
+        return True
