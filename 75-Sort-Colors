@@ -1,0 +1,15 @@
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        p0 = div = 0
+        p1 = len(nums) - 1
+        while div <= p1:
+            if nums[div] == 0:
+                nums[p0],nums[div] = nums[div],nums[p0]
+                div += 1
+                p0 += 1
+            elif nums[div] == 2:
+                nums[p1],nums[div] = nums[div],nums[p1]
+                p1 -= 1
+            else:
+                div += 1
+        return nums
